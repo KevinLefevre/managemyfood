@@ -1,14 +1,30 @@
 {% extends "layout.html" %}
 
+{% block title %}
+  Calendar - ManageMyFood
+{% endblock %}
+
 {% block content %}
+<!-- Calendar Header (Month Title + Arrows) -->
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+  <!-- Left Arrow -->
+  <a href="{{ prev_link }}" style="text-decoration: none; background: #eee; padding: 0.5rem;">&#8592;</a>
+
+  <!-- Month Name -->
+  <h1 style="margin: 0;">{{ month_name }}</h1>
+
+  <!-- Right Arrow -->
+  <a href="{{ next_link }}" style="text-decoration: none; background: #eee; padding: 0.5rem;">&#8594;</a>
+</div>
+
 <!-- 7-column grid for day boxes -->
 <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem;">
   {% for dm in day_meals_list %}
     {% if dm %}
       {% set idx = loop.index0 %}
       {% set day_num = idx + 1 %}
-      <!-- A day box with Day #, plus two buttons for lunch/dinner -->
       <div class="day-box" style="background-color: #ddd; border-radius: 4px; padding: 1rem;">
+        <!-- Display day number, lunch name, dinner name -->
         <div style="font-weight: bold; margin-bottom: 0.5rem;">
           Day {{ day_num }}
         </div>
@@ -18,7 +34,8 @@
         <div style="background: #fff; padding: 0.3rem;">
           Dinner: {{ dm.get_dinner_name() }}
         </div>
-        <!-- Buttons for each meal -->
+
+        <!-- Two buttons to open the modal for each meal type -->
         <div style="margin-top: 0.5rem;">
           <button class="meal-button"
                   style="margin-right: 0.5rem; cursor: pointer;"
@@ -41,11 +58,15 @@
         </div>
       </div>
     {% else %}
+      <!-- Empty box if day is None -->
       <div style="background-color: #fafafa; border-radius: 4px;"></div>
     {% endif %}
   {% endfor %}
 </div>
 
+<!-- Include the modal partial -->
 {% include "modal.html" %}
+
+<!-- Link to your external JS that handles the modal logic -->
 <script src="/static/js/meal-modal.js"></script>
 {% endblock %}
