@@ -1,103 +1,78 @@
 // meal-modal.js
 
-// Grab references to modal elements
-const modalOverlay   = document.getElementById('modalOverlay');
-const closeBtn       = document.getElementById('closeBtn');
-const modalDayTitle  = document.getElementById('modalDayTitle');
+const modalOverlay  = document.getElementById('modalOverlay');
+const closeBtn      = document.getElementById('closeBtn');
+const modalDayTitle = document.getElementById('modalDayTitle');
+const modalMealTitle = document.getElementById('modalMealTitle');
 
-// Lunch fields
-const lunchName        = document.getElementById('lunchName');
-const lunchTime        = document.getElementById('lunchTime');
-const lunchCalories    = document.getElementById('lunchCalories');
-const lunchIngredients = document.getElementById('lunchIngredients');
-const lunchRecipe      = document.getElementById('lunchRecipe');
+// Common meal fields
+const mealName        = document.getElementById('mealName');
+const mealTime        = document.getElementById('mealTime');
+const mealCalories    = document.getElementById('mealCalories');
+const mealIngredients = document.getElementById('mealIngredients');
+const mealRecipe      = document.getElementById('mealRecipe');
 
-// Dinner fields
-const dinnerName        = document.getElementById('dinnerName');
-const dinnerTime        = document.getElementById('dinnerTime');
-const dinnerCalories    = document.getElementById('dinnerCalories');
-const dinnerIngredients = document.getElementById('dinnerIngredients');
-const dinnerRecipe      = document.getElementById('dinnerRecipe');
-
-// Close button logic
+// Close logic
 closeBtn.addEventListener('click', () => {
   modalOverlay.style.display = 'none';
 });
-
-// If user clicks outside the white modal box (on the dark overlay), close
 modalOverlay.addEventListener('click', (e) => {
   if (e.target === modalOverlay) {
     modalOverlay.style.display = 'none';
   }
 });
 
-// Attach click events to each day box
-document.querySelectorAll('.day-box').forEach(box => {
-  box.addEventListener('click', async () => {
-    // 1) Extract year/month/day from the box's data attributes
-    const year  = box.dataset.year;
-    const month = box.dataset.month;
-    const day   = box.dataset.day;
+// For each meal button
+document.querySelectorAll('.meal-button').forEach(button => {
+  button.addEventListener('click', async () => {
+    // Extract day info and meal type
+    const year     = button.dataset.year;
+    const month    = button.dataset.month;
+    const day      = button.dataset.day;
+    const mealtype = button.dataset.mealtype; // "lunch" or "dinner"
 
-    // 2) Build the API endpoint URL (adjust if your endpoint is different)
+    // Build the URL (assuming /api/day_details returns {lunch: {}, dinner: {}})
     const url = `/api/day_details?year=${year}&month=${month}&day=${day}`;
 
-    // 3) Fetch the full meal data from the server
     try {
       const response = await fetch(url);
       if (!response.ok) {
-        alert(`Error fetching data: ${response.statusText}`);
+        alert(`Error fetching meal data: ${response.statusText}`);
         return;
       }
       const data = await response.json();
+      // data = { lunch: {...}, dinner: {...} }
 
-      // data should look like:
-      // {
-      //   lunch: {...},
-      //   dinner: {...}
-      // }
+      // Decide which meal object to show
+      let mealData = {};
+      if (mealtype === "lunch") {
+        mealData = data.lunch || {};
+        modalMealTitle.textContent = "Lunch";
+      } else {
+        mealData = data.dinner || {};
+        modalMealTitle.textContent = "Dinner";
+      }
 
-      // 4) Populate the modal fields
-
-      // Title
+      // Fill the modal
       modalDayTitle.textContent = `Day ${day}`;
+      mealName.textContent     = mealData.name               || '';
+      mealTime.textContent     = mealData.prep_time_minutes  || '';
+      mealCalories.textContent = mealData.calories_per_person|| '';
+      mealRecipe.textContent   = mealData.recipe             || '';
 
-      // Lunch
-      const lunch = data.lunch || {};
-      lunchName.textContent     = lunch.name               || '';
-      lunchTime.textContent     = lunch.prep_time_minutes  || '';
-      lunchCalories.textContent = lunch.calories_per_person|| '';
-      lunchRecipe.textContent   = lunch.recipe             || '';
-
-      // Clear old ingredients
-      lunchIngredients.innerHTML = '';
-      if (Array.isArray(lunch.ingredients)) {
-        lunch.ingredients.forEach(ing => {
+      // Rebuild ingredients list
+      mealIngredients.innerHTML = '';
+      if (Array.isArray(mealData.ingredients)) {
+        mealData.ingredients.forEach(ing => {
           const li = document.createElement('li');
           li.textContent = `${ing.quantity} ${ing.unit} ${ing.name}`;
-          lunchIngredients.appendChild(li);
+          mealIngredients.appendChild(li);
         });
       }
 
-      // Dinner
-      const dinner = data.dinner || {};
-      dinnerName.textContent     = dinner.name               || '';
-      dinnerTime.textContent     = dinner.prep_time_minutes  || '';
-      dinnerCalories.textContent = dinner.calories_per_person|| '';
-      dinnerRecipe.textContent   = dinner.recipe             || '';
-
-      // Clear old ingredients
-      dinnerIngredients.innerHTML = '';
-      if (Array.isArray(dinner.ingredients)) {
-        dinner.ingredients.forEach(ing => {
-          const li = document.createElement('li');
-          li.textContent = `${ing.quantity} ${ing.unit} ${ing.name}`;
-          dinnerIngredients.appendChild(li);
-        });
-      }
-
-      // 5) Show the modal
+      // Show the modal
       modalOverlay.style.display = 'flex';
+
     } catch (error) {
       console.error(error);
       alert("An unexpected error occurred.");

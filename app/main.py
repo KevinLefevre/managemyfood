@@ -88,19 +88,12 @@ def show_calendar(
 
 @app.get("/api/day_details")
 def get_day_details(year: int, month: int, day: int):
-    """
-    Returns JSON with lunch/dinner details for the requested date.
-    e.g. /api/day_details?year=2025&month=2&day=10
-    """
-    # 1) Load the JSON file for that specific day (like data/<year>/<month>/<day>.json)
-    #    or use your DayMeal class logic
-    from .box import DayMeal  # adjust if needed
+    from .box import DayMeal
     dm = DayMeal(year, month, day)
     dm.load_data()
-
-    # 2) Return the raw meal info as JSON
     return {
-        "lunch": dm.lunch,   # could be None or dict with {name, recipe, etc.}
-        "dinner": dm.dinner,
+        "lunch": dm.lunch,   # e.g. { name, recipe, etc. }
+        "dinner": dm.dinner
     }
+
 

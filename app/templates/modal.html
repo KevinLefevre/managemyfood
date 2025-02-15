@@ -1,12 +1,9 @@
-<!-- modal.html -->
 <div id="modalOverlay"
      style="
-       display: none;           /* Hidden by default */
+       display: none;
        position: fixed;
-       top: 0;
-       left: 0;
-       width: 100vw;
-       height: 100vh;
+       top: 0; left: 0;
+       width: 100vw; height: 100vh;
        background-color: rgba(0,0,0,0.5);
        justify-content: center;
        align-items: center;
@@ -15,34 +12,24 @@
 >
   <div style="
     background-color: #fff;
-    padding: 1rem;
+    padding: 2rem;
     border-radius: 8px;
-    width: 340px;
+    width: 800px;
     max-width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
   ">
     <h2 id="modalDayTitle">Day X</h2>
 
-    <!-- LUNCH Section -->
-    <h3>Lunch</h3>
-    <p><strong>Name:</strong> <span id="lunchName"></span></p>
-    <p><strong>Prep Time:</strong> <span id="lunchTime"></span> min</p>
-    <p><strong>Calories:</strong> <span id="lunchCalories"></span></p>
-    <p><strong>Ingredients:</strong></p>
-    <ul id="lunchIngredients"></ul>
-    <p><strong>Recipe:</strong></p>
-    <pre id="lunchRecipe"
-         style="background: #f1f1f1; padding: 0.5rem;"></pre>
+    <h3 id="modalMealTitle"></h3> <!-- "Lunch" or "Dinner" -->
 
-    <!-- DINNER Section -->
-    <h3>Dinner</h3>
-    <p><strong>Name:</strong> <span id="dinnerName"></span></p>
-    <p><strong>Prep Time:</strong> <span id="dinnerTime"></span> min</p>
-    <p><strong>Calories:</strong> <span id="dinnerCalories"></span></p>
+    <p><strong>Name:</strong> <span id="mealName"></span></p>
+    <p><strong>Prep Time:</strong> <span id="mealTime"></span> min</p>
+    <p><strong>Calories:</strong> <span id="mealCalories"></span></p>
     <p><strong>Ingredients:</strong></p>
-    <ul id="dinnerIngredients"></ul>
+    <ul id="mealIngredients"></ul>
     <p><strong>Recipe:</strong></p>
-    <pre id="dinnerRecipe"
-         style="background: #f1f1f1; padding: 0.5rem;"></pre>
+    <pre id="mealRecipe" style="background: #f1f1f1; padding: 0.5rem;"></pre>
 
     <button id="closeBtn"
             style="
