@@ -1,0 +1,60 @@
+<!-- modal.html -->
+<div id="modalOverlay"
+     style="
+       display: none;           /* Hidden by default */
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100vw;
+       height: 100vh;
+       background-color: rgba(0,0,0,0.5);
+       justify-content: center;
+       align-items: center;
+       z-index: 9999;
+     "
+>
+  <div style="
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 340px;
+    max-width: 90%;
+  ">
+    <h2 id="modalDayTitle">Day X</h2>
+
+    <!-- LUNCH Section -->
+    <h3>Lunch</h3>
+    <p><strong>Name:</strong> <span id="lunchName"></span></p>
+    <p><strong>Prep Time:</strong> <span id="lunchTime"></span> min</p>
+    <p><strong>Calories:</strong> <span id="lunchCalories"></span></p>
+    <p><strong>Ingredients:</strong></p>
+    <ul id="lunchIngredients"></ul>
+    <p><strong>Recipe:</strong></p>
+    <pre id="lunchRecipe"
+         style="background: #f1f1f1; padding: 0.5rem;"></pre>
+
+    <!-- DINNER Section -->
+    <h3>Dinner</h3>
+    <p><strong>Name:</strong> <span id="dinnerName"></span></p>
+    <p><strong>Prep Time:</strong> <span id="dinnerTime"></span> min</p>
+    <p><strong>Calories:</strong> <span id="dinnerCalories"></span></p>
+    <p><strong>Ingredients:</strong></p>
+    <ul id="dinnerIngredients"></ul>
+    <p><strong>Recipe:</strong></p>
+    <pre id="dinnerRecipe"
+         style="background: #f1f1f1; padding: 0.5rem;"></pre>
+
+    <button id="closeBtn"
+            style="
+              background-color: #005f73;
+              color: #fff;
+              border: none;
+              border-radius: 4px;
+              padding: 0.5rem 1rem;
+              cursor: pointer;
+              margin-top: 1rem;
+            ">
+      Close
+    </button>
+  </div>
+</div>

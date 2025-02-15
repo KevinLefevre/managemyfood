@@ -1,0 +1,53 @@
+{
+  "year": 2025,
+  "month": "04",
+  "day": 7,
+  "meals": {
+    "lunch": {
+      "name": "Tuna Sandwich",
+      "prep_time_minutes": 5,
+      "calories_per_person": 300,
+      "ingredients": [
+        {
+          "name": "Bread",
+          "quantity": 2,
+          "unit": "slice"
+        },
+        {
+          "name": "Tuna",
+          "quantity": 1,
+          "unit": "can"
+        },
+        {
+          "name": "Mayo",
+          "quantity": 1,
+          "unit": "tbsp"
+        }
+      ],
+      "recipe": "1) Drain tuna.\n2) Mix with mayo.\n3) Spread on bread."
+    },
+    "dinner": {
+      "name": "Pasta Bolognese",
+      "prep_time_minutes": 25,
+      "calories_per_person": 450,
+      "ingredients": [
+        {
+          "name": "Spaghetti",
+          "quantity": 200,
+          "unit": "g"
+        },
+        {
+          "name": "Ground Beef",
+          "quantity": 100,
+          "unit": "g"
+        },
+        {
+          "name": "Tomato Sauce",
+          "quantity": 1,
+          "unit": "cup"
+        }
+      ],
+      "recipe": "1) Brown beef.\n2) Add sauce and simmer.\n3) Boil pasta and combine."
+    }
+  }
+}

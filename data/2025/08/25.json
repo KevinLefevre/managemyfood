@@ -1,0 +1,53 @@
+{
+  "year": 2025,
+  "month": "08",
+  "day": 25,
+  "meals": {
+    "lunch": {
+      "name": "Tuna Sandwich",
+      "prep_time_minutes": 5,
+      "calories_per_person": 300,
+      "ingredients": [
+        {
+          "name": "Bread",
+          "quantity": 2,
+          "unit": "slice"
+        },
+        {
+          "name": "Tuna",
+          "quantity": 1,
+          "unit": "can"
+        },
+        {
+          "name": "Mayo",
+          "quantity": 1,
+          "unit": "tbsp"
+        }
+      ],
+      "recipe": "1) Drain tuna.\n2) Mix with mayo.\n3) Spread on bread."
+    },
+    "dinner": {
+      "name": "Vegetable Stir-Fry",
+      "prep_time_minutes": 15,
+      "calories_per_person": 350,
+      "ingredients": [
+        {
+          "name": "Mixed Veggies",
+          "quantity": 2,
+          "unit": "cup"
+        },
+        {
+          "name": "Soy Sauce",
+          "quantity": 2,
+          "unit": "tbsp"
+        },
+        {
+          "name": "Tofu",
+          "quantity": 1,
+          "unit": "cup"
+        }
+      ],
+      "recipe": "1) Saut\u00e9 veggies & tofu.\n2) Add soy sauce.\n3) Stir until tender."
+    }
+  }
+}

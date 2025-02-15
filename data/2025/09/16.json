@@ -1,0 +1,53 @@
+{
+  "year": 2025,
+  "month": "09",
+  "day": 16,
+  "meals": {
+    "lunch": {
+      "name": "Tuna Sandwich",
+      "prep_time_minutes": 5,
+      "calories_per_person": 300,
+      "ingredients": [
+        {
+          "name": "Bread",
+          "quantity": 2,
+          "unit": "slice"
+        },
+        {
+          "name": "Tuna",
+          "quantity": 1,
+          "unit": "can"
+        },
+        {
+          "name": "Mayo",
+          "quantity": 1,
+          "unit": "tbsp"
+        }
+      ],
+      "recipe": "1) Drain tuna.\n2) Mix with mayo.\n3) Spread on bread."
+    },
+    "dinner": {
+      "name": "Chicken Fajitas",
+      "prep_time_minutes": 20,
+      "calories_per_person": 400,
+      "ingredients": [
+        {
+          "name": "Tortilla",
+          "quantity": 2,
+          "unit": "pc"
+        },
+        {
+          "name": "Chicken Breast",
+          "quantity": 1,
+          "unit": "pc"
+        },
+        {
+          "name": "Bell Pepper",
+          "quantity": 1,
+          "unit": "pc"
+        }
+      ],
+      "recipe": "1) Slice chicken & peppers.\n2) Saut\u00e9 with seasoning.\n3) Serve in tortillas."
+    }
+  }
+}

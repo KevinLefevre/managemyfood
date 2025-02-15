@@ -1,0 +1,53 @@
+{
+  "year": 2025,
+  "month": "02",
+  "day": 18,
+  "meals": {
+    "lunch": {
+      "name": "Grilled Chicken Salad",
+      "prep_time_minutes": 15,
+      "calories_per_person": 320,
+      "ingredients": [
+        {
+          "name": "Chicken Breast",
+          "quantity": 1,
+          "unit": "pc"
+        },
+        {
+          "name": "Lettuce",
+          "quantity": 2,
+          "unit": "cup"
+        },
+        {
+          "name": "Tomato",
+          "quantity": 1,
+          "unit": "pc"
+        }
+      ],
+      "recipe": "1) Season and grill chicken.\n2) Chop lettuce and tomato.\n3) Toss with dressing."
+    },
+    "dinner": {
+      "name": "Chicken Fajitas",
+      "prep_time_minutes": 20,
+      "calories_per_person": 400,
+      "ingredients": [
+        {
+          "name": "Tortilla",
+          "quantity": 2,
+          "unit": "pc"
+        },
+        {
+          "name": "Chicken Breast",
+          "quantity": 1,
+          "unit": "pc"
+        },
+        {
+          "name": "Bell Pepper",
+          "quantity": 1,
+          "unit": "pc"
+        }
+      ],
+      "recipe": "1) Slice chicken & peppers.\n2) Saut\u00e9 with seasoning.\n3) Serve in tortillas."
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "year": 2025,
+  "month": "08",
+  "day": 26,
+  "meals": {
+    "lunch": {
+      "name": "Veggie Wrap",
+      "prep_time_minutes": 10,
+      "calories_per_person": 280,
+      "ingredients": [
+        {
+          "name": "Tortilla",
+          "quantity": 1,
+          "unit": "pc"
+        },
+        {
+          "name": "Mixed Veggies",
+          "quantity": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Cheese",
+          "quantity": 1,
+          "unit": "slice"
+        }
+      ],
+      "recipe": "1) Warm tortilla.\n2) Fill with veggies and cheese.\n3) Roll it up."
+    },
+    "dinner": {
+      "name": "Chicken Fajitas",
+      "prep_time_minutes": 20,
+      "calories_per_person": 400,
+      "ingredients": [
+        {
+          "name": "Tortilla",
+          "quantity": 2,
+          "unit": "pc"
+        },
+        {
+          "name": "Chicken Breast",
+          "quantity": 1,
+          "unit": "pc"
+        },
+        {
+          "name": "Bell Pepper",
+          "quantity": 1,
+          "unit": "pc"
+        }
+      ],
+      "recipe": "1) Slice chicken & peppers.\n2) Saut\u00e9 with seasoning.\n3) Serve in tortillas."
+    }
+  }
+}

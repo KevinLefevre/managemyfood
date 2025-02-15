@@ -1,0 +1,53 @@
+{
+  "year": 2025,
+  "month": "08",
+  "day": 17,
+  "meals": {
+    "lunch": {
+      "name": "Veggie Wrap",
+      "prep_time_minutes": 10,
+      "calories_per_person": 280,
+      "ingredients": [
+        {
+          "name": "Tortilla",
+          "quantity": 1,
+          "unit": "pc"
+        },
+        {
+          "name": "Mixed Veggies",
+          "quantity": 1,
+          "unit": "cup"
+        },
+        {
+          "name": "Cheese",
+          "quantity": 1,
+          "unit": "slice"
+        }
+      ],
+      "recipe": "1) Warm tortilla.\n2) Fill with veggies and cheese.\n3) Roll it up."
+    },
+    "dinner": {
+      "name": "Vegetable Stir-Fry",
+      "prep_time_minutes": 15,
+      "calories_per_person": 350,
+      "ingredients": [
+        {
+          "name": "Mixed Veggies",
+          "quantity": 2,
+          "unit": "cup"
+        },
+        {
+          "name": "Soy Sauce",
+          "quantity": 2,
+          "unit": "tbsp"
+        },
+        {
+          "name": "Tofu",
+          "quantity": 1,
+          "unit": "cup"
+        }
+      ],
+      "recipe": "1) Saut\u00e9 veggies & tofu.\n2) Add soy sauce.\n3) Stir until tender."
+    }
+  }
+}

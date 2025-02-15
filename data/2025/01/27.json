@@ -1,0 +1,53 @@
+{
+  "year": 2025,
+  "month": "01",
+  "day": 27,
+  "meals": {
+    "lunch": {
+      "name": "Grilled Chicken Salad",
+      "prep_time_minutes": 15,
+      "calories_per_person": 320,
+      "ingredients": [
+        {
+          "name": "Chicken Breast",
+          "quantity": 1,
+          "unit": "pc"
+        },
+        {
+          "name": "Lettuce",
+          "quantity": 2,
+          "unit": "cup"
+        },
+        {
+          "name": "Tomato",
+          "quantity": 1,
+          "unit": "pc"
+        }
+      ],
+      "recipe": "1) Season and grill chicken.\n2) Chop lettuce and tomato.\n3) Toss with dressing."
+    },
+    "dinner": {
+      "name": "Vegetable Stir-Fry",
+      "prep_time_minutes": 15,
+      "calories_per_person": 350,
+      "ingredients": [
+        {
+          "name": "Mixed Veggies",
+          "quantity": 2,
+          "unit": "cup"
+        },
+        {
+          "name": "Soy Sauce",
+          "quantity": 2,
+          "unit": "tbsp"
+        },
+        {
+          "name": "Tofu",
+          "quantity": 1,
+          "unit": "cup"
+        }
+      ],
+      "recipe": "1) Saut\u00e9 veggies & tofu.\n2) Add soy sauce.\n3) Stir until tender."
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem;">
+  {% for dm in day_meals_list %}
+    {% if dm %}
+      {% set idx = loop.index0 %}
+      {% set day_num = idx + 1 %}
+      <div class="day-box"
+           style="background-color: #ddd; border-radius: 4px; padding: 1rem; cursor: pointer;"
+           data-year="{{ dm.year }}"
+           data-month="{{ dm.month }}"
+           data-day="{{ dm.day }}"
+      >
+        <div style="font-weight: bold; margin-bottom: 0.5rem;">
+          Day {{ day_num }}
+        </div>
+        <div style="background: #fff; margin-bottom: 0.3rem; padding: 0.3rem;">
+          Lunch: {{ dm.get_lunch_name() }}
+        </div>
+        <div style="background: #fff; padding: 0.3rem;">
+          Dinner: {{ dm.get_dinner_name() }}
+        </div>
+      </div>
+    {% else %}
+      <div style="background-color: #fafafa; border-radius: 4px;"></div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% include "modal.html" %}
+<script src="/static/js/meal-modal.js"></script>
+{% endblock %}
