@@ -1,47 +1,39 @@
-<div id="modalOverlay"
-     style="
-       display: none;
-       position: fixed;
-       top: 0; left: 0;
-       width: 100vw; height: 100vh;
-       background-color: rgba(0,0,0,0.5);
-       justify-content: center;
-       align-items: center;
-       z-index: 9999;
-     "
->
-  <div style="
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    width: 800px;
-    max-width: 90%;
-    max-height: 90vh;
-    overflow-y: auto;
-  ">
-    <h2 id="modalDayTitle">Day X</h2>
+<div id="modalOverlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalDayTitle" aria-hidden="true">
+  <div class="modal">
+    <header class="modal__header">
+      <div>
+        <p class="modal__subtitle">Detailed meal</p>
+        <h2 id="modalDayTitle" class="modal__title">Day</h2>
+      </div>
+      <button id="closeBtn" class="button button--primary" type="button">Close</button>
+    </header>
 
-    <h3 id="modalMealTitle"></h3> <!-- "Lunch" or "Dinner" -->
+    <section class="modal__section">
+      <h3 id="modalMealTitle" class="modal__section-title"></h3>
+      <dl class="modal__details">
+        <div class="modal__detail">
+          <dt>Name</dt>
+          <dd id="mealName"></dd>
+        </div>
+        <div class="modal__detail">
+          <dt>Prep time</dt>
+          <dd><span id="mealTime"></span> min</dd>
+        </div>
+        <div class="modal__detail">
+          <dt>Calories</dt>
+          <dd><span id="mealCalories"></span></dd>
+        </div>
+      </dl>
+    </section>
 
-    <p><strong>Name:</strong> <span id="mealName"></span></p>
-    <p><strong>Prep Time:</strong> <span id="mealTime"></span> min</p>
-    <p><strong>Calories:</strong> <span id="mealCalories"></span></p>
-    <p><strong>Ingredients:</strong></p>
-    <ul id="mealIngredients"></ul>
-    <p><strong>Recipe:</strong></p>
-    <pre id="mealRecipe" style="background: #f1f1f1; padding: 0.5rem;"></pre>
+    <section class="modal__section">
+      <h4 class="modal__section-title">Ingredients</h4>
+      <ul id="mealIngredients" class="ingredient-list"></ul>
+    </section>
 
-    <button id="closeBtn"
-            style="
-              background-color: #005f73;
-              color: #fff;
-              border: none;
-              border-radius: 4px;
-              padding: 0.5rem 1rem;
-              cursor: pointer;
-              margin-top: 1rem;
-            ">
-      Close
-    </button>
+    <section class="modal__section">
+      <h4 class="modal__section-title">Recipe</h4>
+      <pre id="mealRecipe" class="recipe-text"></pre>
+    </section>
   </div>
 </div>

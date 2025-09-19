@@ -1,72 +1,91 @@
 {% extends "layout.html" %}
 
-{% block title %}
-  Calendar - ManageMyFood
-{% endblock %}
+{% block title %}Calendar · ManageMyFood{% endblock %}
 
 {% block content %}
-<!-- Calendar Header (Month Title + Arrows) -->
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-  <!-- Left Arrow -->
-  <a href="{{ prev_link }}" style="text-decoration: none; background: #eee; padding: 0.5rem;">&#8592;</a>
+<section class="calendar-header">
+  <a class="calendar-nav" href="{{ prev_link }}" aria-label="Previous month">‹</a>
 
-  <!-- Month Name -->
-  <h1 style="margin: 0;">{{ month_name }}</h1>
+  <div class="calendar-heading">
+    <p class="calendar-label">Meal planner</p>
+    <h1 class="calendar-title">{{ month_name }}</h1>
+  </div>
 
-  <!-- Right Arrow -->
-  <a href="{{ next_link }}" style="text-decoration: none; background: #eee; padding: 0.5rem;">&#8594;</a>
-</div>
+  <a class="calendar-nav" href="{{ next_link }}" aria-label="Next month">›</a>
+</section>
 
-<!-- 7-column grid for day boxes -->
-<div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem;">
-  {% for dm in day_meals_list %}
-    {% if dm %}
-      {% set idx = loop.index0 %}
-      {% set day_num = idx + 1 %}
-      <div class="day-box" style="background-color: #ddd; border-radius: 4px; padding: 1rem;">
-        <!-- Display day number, lunch name, dinner name -->
-        <div style="font-weight: bold; margin-bottom: 0.5rem;">
-          Day {{ day_num }}
-        </div>
-        <div style="background: #fff; margin-bottom: 0.3rem; padding: 0.3rem;">
-          Lunch: {{ dm.get_lunch_name() }}
-        </div>
-        <div style="background: #fff; padding: 0.3rem;">
-          Dinner: {{ dm.get_dinner_name() }}
-        </div>
+<section class="calendar-summary">
+  <article class="summary-card">
+    <p class="summary-label">Meals planned</p>
+    <p class="summary-value">{{ month_summary.planned_meals }}</p>
+  </article>
+  <article class="summary-card">
+    <p class="summary-label">Lunches</p>
+    <p class="summary-value">{{ month_summary.total_lunches }}</p>
+  </article>
+  <article class="summary-card">
+    <p class="summary-label">Dinners</p>
+    <p class="summary-value">{{ month_summary.total_dinners }}</p>
+  </article>
+  <article class="summary-card">
+    <p class="summary-label">Complete days</p>
+    <p class="summary-value">{{ month_summary.days_with_both }}</p>
+  </article>
+</section>
 
-        <!-- Two buttons to open the modal for each meal type -->
-        <div style="margin-top: 0.5rem;">
-          <button class="meal-button"
-                  style="margin-right: 0.5rem; cursor: pointer;"
-                  data-year="{{ dm.year }}"
-                  data-month="{{ dm.month }}"
-                  data-day="{{ dm.day }}"
-                  data-mealtype="lunch"
-          >
-            Lunch
-          </button>
-          <button class="meal-button"
-                  style="cursor: pointer;"
-                  data-year="{{ dm.year }}"
-                  data-month="{{ dm.month }}"
-                  data-day="{{ dm.day }}"
-                  data-mealtype="dinner"
-          >
-            Dinner
-          </button>
-        </div>
-      </div>
-    {% else %}
-      <!-- Empty box if day is None -->
-      <div style="background-color: #fafafa; border-radius: 4px;"></div>
-    {% endif %}
-  {% endfor %}
-</div>
+<section class="calendar-container">
+  <div class="weekday-row">
+    {% for label in weekday_labels %}
+      <div class="weekday-label">{{ label[:3] }}</div>
+    {% endfor %}
+  </div>
 
-<!-- Include the modal partial -->
+  <div class="calendar-grid">
+    {% for week in calendar_grid %}
+      {% for day in week %}
+        {% if day %}
+          {% set classes = [
+            "day-card",
+            "is-interactive",
+            "has-lunch" if day.lunch else "",
+            "has-dinner" if day.dinner else "",
+            "is-today" if current_day and day.day == current_day else ""
+          ] %}
+          <article class="{{ ' '.join(classes | reject('equalto', '')) }}" data-day="{{ day.day }}">
+            <header class="day-card__header">
+              <span class="day-number">{{ day.day }}</span>
+              <div class="meal-badges">
+                <span class="badge badge--lunch" aria-hidden="true">L</span>
+                <span class="badge badge--dinner" aria-hidden="true">D</span>
+              </div>
+            </header>
+
+            <div class="meal-preview">
+              <p class="meal-preview__label">Lunch</p>
+              <p class="meal-preview__value">{{ day.get_lunch_name() or "Not planned" }}</p>
+            </div>
+            <div class="meal-preview">
+              <p class="meal-preview__label">Dinner</p>
+              <p class="meal-preview__value">{{ day.get_dinner_name() or "Not planned" }}</p>
+            </div>
+
+            <footer class="day-card__footer">
+              <button class="meal-button" data-year="{{ day.year }}" data-month="{{ day.month }}" data-day="{{ day.day }}" data-mealtype="lunch">
+                View lunch
+              </button>
+              <button class="meal-button" data-year="{{ day.year }}" data-month="{{ day.month }}" data-day="{{ day.day }}" data-mealtype="dinner">
+                View dinner
+              </button>
+            </footer>
+          </article>
+        {% else %}
+          <div class="day-card day-card--empty" aria-hidden="true"></div>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+</section>
+
 {% include "modal.html" %}
-
-<!-- Link to your external JS that handles the modal logic -->
-<script src="/static/js/meal-modal.js"></script>
+<script src="/static/js/meal-modal.js" defer></script>
 {% endblock %}

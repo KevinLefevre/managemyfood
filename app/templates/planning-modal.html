@@ -1,13 +1,19 @@
-<!-- planning-modal.html -->
-<div id="planningModalOverlay"
-     style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5);">
-  <div style="background: #fff; width: 600px; max-width: 90%; margin: auto; margin-top: 5%; padding: 1rem; border-radius: 8px;">
-    <h2>Meal Planner Supervisor</h2>
-    <div id="chatArea" style="border: 1px solid #ccc; height: 300px; overflow-y: auto; margin-bottom: 1rem; padding: 0.5rem;">
-      <!-- Chat messages will go here -->
+<div id="planningModalOverlay" class="modal-overlay" aria-hidden="true">
+  <div class="modal modal--narrow" role="dialog" aria-modal="true" aria-labelledby="planningModalTitle">
+    <header class="modal__header">
+      <div>
+        <p class="modal__subtitle">Meal planner supervisor</p>
+        <h2 id="planningModalTitle" class="modal__title">Start a planning session</h2>
+      </div>
+      <button id="closePlanningBtn" class="button button--primary" type="button">Close</button>
+    </header>
+
+    <div id="chatArea" class="planning-chat" role="log" aria-live="polite"></div>
+
+    <div class="planning-controls">
+      <label class="sr-only" for="chatInput">Message the planning assistant</label>
+      <input id="chatInput" class="planning-input" type="text" placeholder="Ask for new ideas…" />
+      <button id="sendChatBtn" class="button button--accent" type="button">Send</button>
     </div>
-    <input type="text" id="chatInput" style="width: 80%;">
-    <button id="sendChatBtn">Send</button>
-    <button id="closePlanningBtn" style="margin-left: 1rem;">Close</button>
   </div>
 </div>
